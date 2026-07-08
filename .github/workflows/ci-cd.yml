@@ -51,11 +51,17 @@ jobs:
       - name: Validate HTML Files
         run: |
           echo "Checking HTML files..."
-          find src -name "*.html"
+          find . -type f -name "*.html"
 
       - name: PHP Syntax Check
         run: |
-          find src/php -name "*.php" -exec php -l {} \;
+          echo "Checking PHP syntax..."
+          find . -type f -name "*.php" -exec php -l {} \;
+
+      - name: Check SQL File
+        run: |
+          echo "Checking SQL files..."
+          find . -type f -name "*.sql" || echo "No SQL files found"
 
   build:
     name: Build Docker Image
